@@ -1,0 +1,15 @@
+{
+    "name": "dmartinez/formstack-assessment",
+    "description": "A fun assessment created for formstack.com",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "dmartinez",
+            "email": "dmartinez@dbma-dev.com"
+        }
+    ],
+    "require": {
+        "symfony/dotenv": "^5.1"
+    }
+}
