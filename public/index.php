@@ -1,2 +1,2 @@
 <?php
-    echo "hello world";
+    require_once "../config/app.php";
