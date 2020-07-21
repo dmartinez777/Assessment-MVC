@@ -12,22 +12,22 @@ class Request
     /**
      * @var Response
      */
-    public $response;
+    public Response $response;
 
     /**
      * @var array
      */
-    private $params;
+    public array $params;
 
     /**
      * @var string
      */
-    private $reqMethod;
+    private string $reqMethod;
 
     /**
      * @var string
      */
-    private $contentType;
+    private string $contentType;
 
     /**
      * Request constructor.
@@ -55,7 +55,7 @@ class Request
      */
     public function getParams()
     {
-        return $this->params;
+        return $this->params[0];
     }
 
     /**
