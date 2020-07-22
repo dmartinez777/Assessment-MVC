@@ -46,7 +46,7 @@ class Router
      */
     private static function methodType($route, $closure, $method)
     {
-        if (strcasecmp($_SERVER['REQUEST_METHOD'], $method) !== 0) {
+        if (!isset($_SERVER['REQUEST_METHOD']) || strcasecmp($_SERVER['REQUEST_METHOD'], $method) !== 0) {
             return false; //Return error class here instead.
         }
 

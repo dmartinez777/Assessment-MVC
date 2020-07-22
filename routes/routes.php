@@ -51,6 +51,7 @@ Router::post('/user/update/([0-9]*)', function (Request $request) {
 Router::post('/user/delete', function (Request $request) {
     $status = false;
     $userId = $request->getJSON();
+
     if (isset($userId->id) && filter_var($userId->id, FILTER_VALIDATE_INT)) {
         $status = (new UserController())->deleteUser($userId->id);
     }
