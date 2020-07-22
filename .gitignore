@@ -2,3 +2,4 @@
 /phing-latest.phar
 /.idea/
 /vendor/
+/.env
