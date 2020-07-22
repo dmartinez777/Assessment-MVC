@@ -31,4 +31,5 @@ Example: http://mylocalprojects-fs.com/users (gets all users)
 Example: http://mylocalprojects-fs.com/user/1 (gets a specific user)
 ```
 You can use AMVC with the following tools: postman, insomnia, or a browser to access any route.
+A Postman import file "AssessmentMVC.postman_collection.json" has been added to the project for testing.
 
