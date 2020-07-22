@@ -16,10 +16,10 @@ class Response
     /**
      * Set JSON content and response code.
      *
-     * @param array $content
+     * @param array|object $content
      * @param int $statusCode
      */
-    public function toJSON(array $content = [], $statusCode = 200)
+    public function toJSON($content, $statusCode = 200)
     {
         http_response_code($statusCode);
         header('Content-Type: application/json');

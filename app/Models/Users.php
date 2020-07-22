@@ -1,8 +1,9 @@
 <?php
 
-
 namespace App\Models;
 
+use App\Entities\Entities;
+use App\Entities\UserEntities;
 use PDOStatement;
 
 /**
@@ -17,41 +18,90 @@ class Users extends Model
     private string $tableName = 'users';
 
     /**
-     * @param object $user
+     * @param object $userData
      * @return bool
      */
-    public function createUser(object $user)
+    public function createUser(object $userData)
     {
-        return $this->prepare(
-            sprintf(
-                "INSERT INTO %s (
-                    `first_name`, `last_name`, `email_address`, `password`, `avatar`
-                ) VALUES ('%s', '%s', '%s', '%s', '%s')",
-                $this->tableName,
-                $user->first_name,
-                $user->last_name,
-                $user->email_address,
-                $user->password,
-                $user->avatar
-            )
-        )->lastInsertId();
+        $user = UserEntities::props($userData);
+
+        if ($this->isUser($user->email, 'email') == 0) {
+            $results = $this->prepare("INSERT INTO {$this->tableName} VALUES (
+                0, '$user->firstName', '$user->lastName', '$user->email', '$user->avatar', '{$user->hashPassword()}'
+            )");
+
+            return $results->errorCode() <= 0;
+        }
+
+        return false; //return error message later
     }
 
     /**
-     * @param $id
-     * @param $user
+     * @todo: This method still needs work, it should only update
+     *        available fields
+     *
+     * @param int    $id
+     * @param object $userContent
      *
      * @return Users|false|PDOStatement
      */
-    public function updateUserById($id, $user)
+    public function updateUserById(int $id, object $userContent)
     {
-        $results = $this->prepare(
-            "UPDATE {$this->tableName} SET first_name = '$user->first_name', 
-                 last_name = '$user->last_name', email_address = '$user->email_address',
-                 password = '$user->password',avatar = '$user->avatar' WHERE id = '$id'"
-        );
+        if ($this->isUser($id)) {
+            $fields = [];
+            $user   = UserEntities::props($userContent);
 
-        return !!($results->errorCode() > 0);
+            if ($user) {
+                foreach ($user as $columns => $value) {
+                    if ($value) {
+                        if ($columns == "password") {
+                            $value = $user->hashPassword($value);
+                        }
+                        $fields[] = Entities::camelToSnake($columns) . " = '$value'";
+                    }
+                }
+
+                $glueFields = implode(",", $fields);
+
+                $results = $this->prepare(
+                    "UPDATE {$this->tableName} SET $glueFields WHERE id = '$id'"
+                );
+
+                return $results->errorCode() <= 0;
+            }
+        }
+
+        return false; //return error message later
+    }
+
+    /**
+     * @param int $id
+     * @return Users|false|PDOStatement
+     */
+    public function deleteUser(int $id)
+    {
+        if ($this->isUser($id)) {
+            $result = $this->prepare("DELETE FROM {$this->tableName} WHERE id = '$id'");
+            return $result->errorCode() <= 0;
+        }
+
+        return false; //return error message later
+    }
+
+    /**
+     * @param string $id
+     * @param string $column
+     * @return bool|mixed
+     */
+    public function isUser(string $id, string $column = 'id')
+    {
+        $user = $this->prepare("SELECT * FROM {$this->tableName} WHERE `$column` = '$id'")->fetch(5);
+
+        if ($user) {
+            return UserEntities::props($user);
+        }
+
+        return false;
     }
 
     /**
@@ -60,11 +110,20 @@ class Users extends Model
      */
     public function getUsers(int $limit = 0)
     {
+        $users   = [];
+        $results = $this->prepare("SELECT * FROM {$this->tableName}")->fetchAll(5);
+
         if ($limit > 0) {
-            return $this->prepare("SELECT * FROM {$this->tableName} LIMIT {$limit}")->fetchAll(5);
+            $results = $this->prepare("SELECT * FROM {$this->tableName} LIMIT {$limit}")->fetchAll(5);
         }
 
-        return $this->prepare("SELECT * FROM {$this->tableName}")->fetchAll(5);
+        if ($results) {
+            foreach ($results as $user) {
+                $users[] = UserEntities::props($user);
+            }
+        }
+
+        return $users;
     }
 
     /**
@@ -73,7 +132,12 @@ class Users extends Model
      */
     public function getUserById(int $id)
     {
-        return $this->prepare("SELECT * FROM {$this->tableName} WHERE id = :id", [':id' => $id])
-            ->fetchAll(5);
+        $results = $this->prepare("SELECT * FROM {$this->tableName} WHERE `id` = :id", [':id' => $id])->fetch(5);
+
+        if ($results) {
+            return UserEntities::props($results);
+        }
+
+        return false; //return error message later
     }
 }

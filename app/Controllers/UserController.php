@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Http\Response;
 use App\Models\Users;
+use PDOStatement;
 
 /**
  * Class UserController
@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function getById(int $id)
     {
-        return (new Users())->getUserById((int)$id);
+        return (new Users())->getUserById($id);
     }
 
     /**
@@ -34,10 +34,7 @@ class UserController extends Controller
      */
     public function createUser($user)
     {
-        $response = new Response();
-
-        if (!$user->first_name || !$user->last_name || !$user->email_address || !$user->password) {
-            $response->toJSON(['message' => 'incorrect format or missing required field'], 422);
+        if (!isset($user->first_name, $user->last_name, $user->email, $user->password)) {
             return false;
         }
 
@@ -46,16 +43,21 @@ class UserController extends Controller
 
     /**
      * @param $id
-     * @param $parseJSON
-     *
-     * @return Users|false|\PDOStatement
+     * @param $userContent
+     * @return Users|bool|false|PDOStatement
      */
-    public function updateUser($id, $parseJSON)
+    public function updateUser($id, $userContent)
     {
-        if ( (new Users())->updateUserById($id, $parseJSON)) {
-            echo 'yes';
-        } else {
-            echo 'no';
-        }
+        return $userContent ? (new Users())->updateUserById($id, $userContent) : false;
+    }
+
+
+    /**
+     * @param int $id
+     * @return Users|bool|false|PDOStatement
+     */
+    public function deleteUser(int $id)
+    {
+        return  (new Users())->deleteUser($id);
     }
 }

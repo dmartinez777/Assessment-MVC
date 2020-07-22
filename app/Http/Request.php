@@ -61,7 +61,7 @@ class Request
     /**
      * @return array
      */
-    public function parseJSON()
+    public function getJSON()
     {
         if ($this->reqMethod !== 'POST' || strcasecmp($this->contentType, 'application/json') !== 0) {
             return [];

@@ -20,5 +20,8 @@
             "App\\": "app/",
             "App\\Database\\": "database/"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.2"
     }
 }

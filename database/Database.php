@@ -65,7 +65,7 @@ class Database
     public function connect()
     {
         $options = [
-//            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+            //PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
             PDO::ATTR_EMULATE_PREPARES   => false,
         ];
@@ -152,7 +152,7 @@ class Database
      *
      * @return $this|false|PDOStatement
      */
-    public function prepare($sql, $args = [])
+    public function prepare(string $sql, array $args = [])
     {
         $this->stmt = $this->pdo->prepare($sql);
 
@@ -166,11 +166,11 @@ class Database
     }
 
     /**
-     * @param $sql
+     * @param string $sql
      *
      * @return false|PDOStatement
      */
-    public function query($sql)
+    public function query(string $sql)
     {
         return $this->pdo->query($sql);
     }
@@ -186,7 +186,7 @@ class Database
      */
     public function fetchAll(int $fetchStyle = 0)
     {
-        return $this->isConnected() ? $this->stmt->fetchAll($fetchStyle ? $fetchStyle : $this->fetchStyle) : [];
+        return $this->stmt->fetchAll($fetchStyle ? $fetchStyle : $this->fetchStyle);
     }
 
     /**
@@ -247,7 +247,7 @@ class Database
      *
      * @return mixed
      */
-    public function __call($method, $args)
+    public function __call(string $method, array $args)
     {
         return call_user_func_array([$this->pdo, $method], $args);
     }
