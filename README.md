@@ -6,7 +6,8 @@ I personally might just continue adding to it after.
 - PHP 7.4 
 - Composer 
 - MariaDB
-- Apache
+- Apache or NGINX
+
 ## Installation
 You can download the Assessment-MVC source directly from Git clone:
 ```
