@@ -12,6 +12,9 @@ You can download the Assessment-MVC source directly from Git clone:
 ```
 cd /var/www/html
 git clone https://github.com/xlordt/Assessment-MVC.git
+cd Assessment-MVC
+composer install
+php install.php (currently only works under Vagrant).
 ``` 
 Once you have downloaded all the source open .env in the main root directory and modify it accordingly by 
 adding the sites & database information.
@@ -31,6 +34,5 @@ Example: http://testbox.test/users (gets all users)
 Example: http://testbox.test/user/1 (gets a specific user)
 ```
 You can use AMVC with the following tools: postman, insomnia, or a browser to access any route.
-
 A Postman import file "AssessmentMVC.postman_collection.json" contains a collection of routes used.
 
