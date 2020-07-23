@@ -1,5 +1,5 @@
 ## About
-Assessment-MVC is a small PHP MVC Framework developed as a fun assessment. 
+Assessment-MVC is a small PHP MVC Framework developed as a fun assessment for a job interview. 
 I personally might just continue adding to it after.
 
 ## Requirements
@@ -36,4 +36,3 @@ Example: http://testbox.test/user/1 (gets a specific user)
 You can use AMVC with the following tools: postman, insomnia, or a browser to access any route.
  ## Using POSTMAN
  A Postman import file "AssessmentMVC.postman_collection.json" contains a collection of routes for you to use.
-
