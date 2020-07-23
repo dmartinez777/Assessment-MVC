@@ -15,9 +15,5 @@ class Model extends Database
     public function __construct()
     {
         $this->connect();
-//        if (!$this->db instanceof Database) {
-//            $this->db = new Database();
-//            $this->db->connect();
-//        }
     }
 }

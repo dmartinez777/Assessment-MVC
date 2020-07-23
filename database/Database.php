@@ -156,10 +156,12 @@ class Database
     {
         $this->stmt = $this->pdo->prepare($sql);
 
-        if (!empty($args)) {
-            $this->stmt->execute($args);
-        } else {
-            $this->stmt->execute();
+        if ($this->stmt) {
+            if (!empty($args)) {
+                $this->stmt->execute($args);
+            } else {
+                $this->stmt->execute();
+            }
         }
 
         return $this;
