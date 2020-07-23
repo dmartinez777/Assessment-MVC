@@ -25,9 +25,9 @@ class Users extends Model
     {
         $user = UserEntities::props($userData);
 
-        if ($this->isUser($user->email, 'email') == 0) {
+        if ($this->isUser($user->email, 'email')) {
             $results = $this->prepare("INSERT INTO {$this->tableName} VALUES (
-                0, '$user->firstName', '$user->lastName', '$user->email', '$user->avatar', '{$user->hashPassword()}'
+                0, '$user->firstName', '$user->lastName', '$user->email', '{$user->hashPassword()}', '$user->avatar'
             )");
 
             return $results->errorCode() <= 0;

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "953ba7ce-a497-4c47-b384-154ef4d28205",
+		"_postman_id": "5bbd4f8e-de54-42ed-b206-d733d64ecc22",
 		"name": "AssessmentMVC",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,22 +9,24 @@
 			"name": "Create user",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"first_name\":\"Brenda\",\"last_name\":\"Martinez\",\"email\":\"bmartinez@dbma-dev.com\", \"password\": \"123456789\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\n\t\"first_name\":\"tester\",\"last_name\":\"tests\",\"email\":\"test@test.com\", \"password\": \"123456789\"\n}"
 				},
 				"url": {
-					"raw": "http://mylocalprojects-fs.com/user/create",
+					"raw": "http://testbox.test/user/create",
 					"protocol": "http",
 					"host": [
-						"mylocalprojects-fs",
-						"com"
+						"testbox",
+						"test"
 					],
 					"path": [
 						"user",
@@ -38,27 +40,29 @@
 			"name": "Update user",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"first_name\":\"Brenda\",\"last_name\":\"Martinez\",\"email\":\"bmartinez@dbma-dev.com\", \"password\":\"test\"\r\n}\r\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\r\n\t\"first_name\":\"Brenda\",\"last_name\":\"Martinez\",\"email\":\"bmartinez@dbma-dev.com\",\"password\":\"test\"\r\n}\r\n"
 				},
 				"url": {
-					"raw": "http://mylocalprojects-fs.com/user/update/4",
+					"raw": "http://testbox.test/user/update/3",
 					"protocol": "http",
 					"host": [
-						"mylocalprojects-fs",
-						"com"
+						"testbox",
+						"test"
 					],
 					"path": [
 						"user",
 						"update",
-						"4"
+						"3"
 					]
 				}
 			},
@@ -68,22 +72,24 @@
 			"name": "Delete user",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"id\":2\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\r\n\t\"id\":2\r\n}"
 				},
 				"url": {
-					"raw": "http://mylocalprojects-fs.com/user/delete",
+					"raw": "http://testbox.test/user/delete",
 					"protocol": "http",
 					"host": [
-						"mylocalprojects-fs",
-						"com"
+						"testbox",
+						"test"
 					],
 					"path": [
 						"user",
@@ -98,8 +104,21 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": {
+				"body": {
+					"mode": "raw",
 					"raw": ""
+				},
+				"url": {
+					"raw": "http://testbox.test/user/1",
+					"protocol": "http",
+					"host": [
+						"testbox",
+						"test"
+					],
+					"path": [
+						"user",
+						"1"
+					]
 				}
 			},
 			"response": []
@@ -109,12 +128,23 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": {
+				"body": {
+					"mode": "raw",
 					"raw": ""
+				},
+				"url": {
+					"raw": "http://testbox.test/users",
+					"protocol": "http",
+					"host": [
+						"testbox",
+						"test"
+					],
+					"path": [
+						"users"
+					]
 				}
 			},
 			"response": []
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }

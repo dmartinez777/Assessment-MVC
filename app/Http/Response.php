@@ -9,6 +9,16 @@ namespace App\Http;
  */
 class Response
 {
+    /**
+     *
+     */
+    public function toArray()
+    {
+    }
+
+    /**
+     *
+     */
     public function toXML()
     {
     }
