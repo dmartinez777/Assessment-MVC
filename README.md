@@ -27,8 +27,8 @@ NOTE: content-type must be JSON for all post
 (post) /user/update/{id}
 (post) /user/delete
 
-Example: http://mylocalprojects-fs.com/users (gets all users)
-Example: http://mylocalprojects-fs.com/user/1 (gets a specific user)
+Example: http://testbox.test/users (gets all users)
+Example: http://testbox.test/user/1 (gets a specific user)
 ```
 You can use AMVC with the following tools: postman, insomnia, or a browser to access any route.
 
