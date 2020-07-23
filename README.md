@@ -15,7 +15,7 @@ cd /var/www/html
 git clone https://github.com/xlordt/Assessment-MVC.git
 cd Assessment-MVC
 composer install
-php install.php (Vagrant only due to mysql login, or please configure the install script).
+php install.php (Currently Vagrant only, or please configure the install script).
 ``` 
 Once you have downloaded all the source open .env in the main root directory and modify it accordingly by 
 adding the sites & database information.
