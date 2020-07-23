@@ -21,10 +21,11 @@ final class Users extends AbstractMigration
         $users = $this->table('users');
         $users->addColumn('first_name', 'string', ['limit' => 64])
             ->addColumn('last_name', 'string', ['limit' => 64])
-            ->addColumn('email', 'string', ['limit' => 100, 'unique' => true])
+            ->addColumn('email', 'string', ['limit' => 100])
             ->addColumn('password', 'string', ['limit' => 255])
             ->addColumn('avatar', 'string', ['null' => true])
-            ->addIndex(['id', 'email'], ['unique' => true])
+            ->addIndex('id')
+            ->addIndex(['email'], ['unique' => true])
             ->save();
     }
 }
