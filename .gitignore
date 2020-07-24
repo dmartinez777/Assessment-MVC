@@ -2,4 +2,5 @@
 /phing-latest.phar
 /.idea/
 /vendor/
+/.vagrant/
 /.env
