@@ -33,6 +33,9 @@ class UserControllerTest extends TestCase
             $this->assertIsString($user->getLastName());
             $this->assertIsString($user->getEmail());
             $this->assertIsString($user->getPassword());
+
+            //Expected count
+            $this->assertCount(2, $users);
         }
     }
 
