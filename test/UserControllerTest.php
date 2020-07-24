@@ -47,11 +47,11 @@ class UserControllerTest extends TestCase
 
     public function testCreateUser()
     {
-        $this->assertTrue(true);
+        $this->assertTrue(true); //Not done
     }
 
     public function testUpdateUser()
     {
-        $this->assertTrue(true);
+        $this->assertTrue(true); //Not done
     }
 }
