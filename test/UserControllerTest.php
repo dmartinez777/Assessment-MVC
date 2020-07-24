@@ -41,7 +41,8 @@ class UserControllerTest extends TestCase
 
     public function testGetById()
     {
-        $this->assertTrue(true);
+        $user =  (new UserController())->getById((int)'aaa'); //this should fail
+        $this->assertIsObject($user);
     }
 
     public function testCreateUser()
