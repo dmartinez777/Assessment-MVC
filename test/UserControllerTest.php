@@ -17,7 +17,6 @@ class UserControllerTest extends TestCase
         $this->assertIsArray($users);
 
         foreach ($users as $user) {
-
             $this->assertObjectHasAttribute('firstName', $user);
             $this->assertObjectHasAttribute('lastName', $user);
             $this->assertObjectHasAttribute('email', $user);
@@ -30,6 +29,10 @@ class UserControllerTest extends TestCase
             $this->assertTrue(!!$user->getEmail());
             $this->assertTrue(!!$user->getPassword());
 
+            $this->assertIsString($user->getFirstName());
+            $this->assertIsString($user->getLastName());
+            $this->assertIsString($user->getEmail());
+            $this->assertIsString($user->getPassword());
         }
     }
 
