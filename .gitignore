@@ -4,4 +4,4 @@
 /vendor/
 /.vagrant/
 .env
-!/.env
+/.env
