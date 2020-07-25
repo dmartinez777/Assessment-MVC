@@ -1,12 +1,14 @@
 <?php
 
-namespace App\test;
+namespace App\Test;
 
 use App\Controllers\UserController;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class UserControllerTest
+ *
+ * @covers UserController
  * @package App\test
  */
 class UserControllerTest extends TestCase
@@ -39,9 +41,15 @@ class UserControllerTest extends TestCase
         }
     }
 
-    public function testGetById()
+    /**
+     * @param int $id
+     * @test
+     * @testWith     10
+     */
+    public function getById(int $id)
     {
-        $user =  (new UserController())->getById((int)'aaa'); //this should fail
+        $user = (new UserController())->getById($id); //this should fail
+        echo '<pre>' . print_r($user, 1) . '</pre>';
         $this->assertIsObject($user);
     }
 
